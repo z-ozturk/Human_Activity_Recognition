@@ -43,11 +43,11 @@ For a comprehensive analysis including methodology, domain knowledge interpretat
 2. **Install dependencies:**
   ```bash
   pip install pandas numpy scikit-learn matplotlib seaborn
-
+```
 3. **Run the script:**
   ```bash
   python feature_selection_comparison.py
-   ---
+  ```
 
 ## 🇹🇷 Türkçe Açıklama
 
@@ -88,8 +88,8 @@ Metodoloji, alan bilgisi (domain knowledge) yorumları ve literatür karşılaş
 2. **Gerekli kütüphaneleri yükleyin:**
   ```bash
   pip install pandas numpy scikit-learn matplotlib seaborn
-
+```
 3. **Analiz kodunu çalıştırın:**
   ```bash
   python feature_selection_comparison.py
-   ---
+  ```
