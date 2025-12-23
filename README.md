@@ -1,106 +1,95 @@
-# Human Activity Recognition: Comparative Analysis of Feature Selection Methods
-### (İnsan Aktivitesi Tanıma: Öznitelik Seçimi Yöntemlerinin Karşılaştırmalı Analizi)
+# Comparative Analysis of Feature Selection in HAR 🏃‍♂️📱
 
-![Status](https://img.shields.io/badge/Status-Work_in_Progress-yellow) ![Python](https://img.shields.io/badge/Python-3.x-blue) ![Library](https://img.shields.io/badge/Library-Scikit--Learn-orange)
-
-##  English Description
-
-### Project Overview
-This project aims to analyze the impact of different **Feature Selection** methods on model performance, computational efficiency, and interpretability. Using the **Human Activity Recognition (HAR) Using Smartphones** dataset, we classify human activities (walking, sitting, laying, etc.) based on sensor data.
-
-The primary goal is to reduce the dimensionality of the dataset (originally **561 features**) while maintaining high accuracy and preventing **Overfitting**.
-
-### Dataset
-* **Source:** [Human Activity Recognition Using Smartphones](https://www.kaggle.com/datasets/uciml/human-activity-recognition-with-smartphones)
-* **Instances:** 10,299 (Train + Test)
-* **Features:** 561 (derived from Accelerometer and Gyroscope raw signals)
-* **Classes:** 6 (Walking, Walking Upstairs, Walking Downstairs, Sitting, Standing, Laying)
-
-### Methodology & Workflow
-1.  **Exploratory Data Analysis (EDA) & Preprocessing:**
-    * Checked for missing values and class imbalance.
-    * Detected and removed duplicate column names.
-    * Encoded target variables using Label Encoding.
-    * **Constraint:** Subject IDs were removed to prevent data leakage and ensure the model learns generalized patterns.
-
-2.  **Baseline Model:**
-    * A Random Forest Classifier was trained on all 561 features to establish a performance benchmark.
-
-3.  **Feature Selection Methods Applied:**
-    * **Filter Method:** ANOVA F-value (`SelectKBest`).
-    * **Embedded Method:** Random Forest Feature Importance (`SelectFromModel`).
-    * **Wrapper Method:** Recursive Feature Elimination (RFE) with Decision Tree estimator.
-
-4.  **Model Evaluation:**
-    * Models are evaluated using **5-Fold Cross Validation**.
-    * Metrics: Accuracy, F1-Score, Training Time.
-
-### Preliminary Results (Current Status)
-* **Baseline (561 Features):** ~92.6% Accuracy.
-* **Wrapper Method (RFE - 100 Features):** ~91.3% Accuracy (Highest efficiency/performance trade-off).
-* **Filter Method (ANOVA - 100 Features):** ~88.7% Accuracy.
-
-*Note: The detailed technical report and final interpretation of the selected sensors are currently being written.*
+*(Türkçe açıklama için aşağı kaydırınız / Scroll down for Turkish description)*
 
 ---
+
+## 🇬🇧 English Description
+
+### 📌 Project Overview
+This project performs a comparative analysis of different **Feature Selection methods** (Filter, Embedded, Wrapper) using the **UCI Human Activity Recognition (HAR)** dataset.
+
+The main objective is to reduce the high-dimensional feature space (561 features) while maintaining high classification accuracy for human activities such as Walking, Sitting, and Standing.
+
+### 🛠 Tech Stack
+* **Language:** Python 3.x
+* **Libraries:** Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
+* **Techniques:** * ANOVA F-Value (Filter)
+  * Random Forest Importance (Embedded)
+  * Recursive Feature Elimination - RFE (Wrapper)
+
+### 📊 Key Results
+The analysis showed that reducing the feature count from **561 to ~100** resulted in minimal accuracy loss while significantly reducing model complexity and training time.
+
+| Method | Feature Count | Accuracy | Training Time |
+| :--- | :--- | :--- | :--- |
+| **Baseline (All Features)** | 561 | 92.67% | ~21.9 sec |
+| **Filter (ANOVA)** | 100 | 88.76% | ~9.3 sec |
+| **Embedded (Random Forest)** | **97** | **90.49%** | **~7.9 sec** |
+| **Wrapper (RFE)** | 100 | 91.92% | ~60.3 sec |
+
+> 🏆 **Conclusion:** The **Embedded Method** provided the best balance between speed and accuracy, making it the most efficient choice for resource-constrained environments like mobile devices.
+
+### 📄 Detailed Report
+For a comprehensive analysis including methodology, domain knowledge interpretation, and literature comparison, please read the full report:
+
+👉 **[Read Full Project Report](PROJECT_REPORT.pdf)**
+
+### 🚀 How to Run
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/z-ozturk/Human_Activity_Recognition](https://github.com/z-ozturk/Human_Activity_Recognition)
+
+2. **Install dependencies:**
+  ```bash
+  pip install pandas numpy scikit-learn matplotlib seaborn
+
+3. **Run the script:**
+  ```bash
+  python feature_selection_comparison.py
+   ---
 
 ## 🇹🇷 Türkçe Açıklama
 
-### Proje Özeti
-Bu proje, makine öğrenmesi modellerinde farklı **Feature Selection** (Öznitelik Seçimi) yöntemlerinin model performansı, hesaplama maliyeti ve yorumlanabilirlik üzerindeki etkilerini analiz etmeyi amaçlamaktadır. Projede **Human Activity Recognition (HAR)** veri seti kullanılarak sensör verileri üzerinden insan aktiviteleri (yürüme, oturma, yatma vb.) sınıflandırılmaktadır.
+### 📌 Proje Özeti
+Bu proje, **UCI İnsan Aktivite Tanıma (HAR)** veri seti kullanılarak farklı **Öznitelik Seçimi yöntemlerinin** (Filtre, Gömülü, Sarmalama) karşılaştırmalı analizini gerçekleştirir.
 
-Temel hedef, 561 öznitelikten oluşan yüksek boyutlu veri setini indirgeyerek, doğruluktan ödün vermeden daha verimli ve **Overfitting** riskinden uzak bir model oluşturmaktır.
+Temel amaç, 561 boyutlu yüksek öznitelik uzayını daraltırken; Yürüme, Oturma ve Ayakta Durma gibi insan aktiviteleri için yüksek sınıflandırma doğruluğunu korumaktır.
 
-### Veri Seti
-* **Kaynak:** [Human Activity Recognition Using Smartphones](https://www.kaggle.com/datasets/uciml/human-activity-recognition-with-smartphones)
-* **Gözlem Sayısı:** 10,299 (Eğitim + Test)
-* **Öznitelikler:** 561 adet (İvmeölçer ve Jiroskop verilerinden türetilmiş)
-* **Sınıflar:** 6 Farklı Aktivite
+### 🛠 Kullanılan Teknolojiler
+* **Dil:** Python 3.x
+* **Kütüphaneler:** Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
+* **Teknikler:** * ANOVA F-Değeri (Filtre)
+  * Random Forest Önem Derecesi (Gömülü)
+  * Recursive Feature Elimination - RFE (Sarmalama)
 
-### Yöntem ve Akış
-1.  **Exploratory Data Analysis (EDA) & Preprocessing:**
-    * Eksik veri ve sınıf dengesizliği kontrol edildi.
-    * Tekrar eden (duplicate) sütun isimleri temizlendi.
-    * Target değişkenler Label Encoding ile sayısallaştırıldı.
-    * **Önemli:** Modelin kişiye özel ezber yapmasını (Data Leakage) önlemek için "Subject" verisi eğitimden çıkarıldı.
+### 📊 Temel Sonuçlar
+Analizler, öznitelik sayısının **561'den ~100'e** düşürülmesinin doğruluk oranında çok az bir kayba neden olurken, model karmaşıklığını ve eğitim süresini önemli ölçüde azalttığını göstermiştir.
 
-2.  **Baseline Model:**
-    * Karşılaştırma yapabilmek için tüm (561) öznitelikler kullanılarak bir Random Forest modeli eğitildi.
+| Yöntem | Öznitelik Sayısı | Doğruluk | Eğitim Süresi |
+| :--- | :--- | :--- | :--- |
+| **Baz Model (Tüm Öznitelikler)** | 561 | %92.67 | ~21.9 sn |
+| **Filtre (ANOVA)** | 100 | %88.76 | ~9.3 sn |
+| **Gömülü (Random Forest)** | **97** | **%90.49** | **~7.9 sn** |
+| **Sarmalama (RFE)** | 100 | %91.92 | ~60.3 sn |
 
-3.  **Uygulanan Feature Selection Yöntemleri:**
-    * **Filter Method:** ANOVA F-test istatistiği (`SelectKBest` kullanılarak).
-    * **Embedded Method:** Random Forest Feature Importance (`SelectFromModel` kullanılarak).
-    * **Wrapper Method:** Recursive Feature Elimination (RFE).
+> 🏆 **Sonuç:** **Gömülü Yöntem (Embedded Method)**, hız ve doğruluk arasındaki en iyi dengeyi sağlayarak, mobil cihazlar gibi kaynak kısıtlı ortamlar için en verimli seçenek olduğunu kanıtlamıştır.
 
-4.  **Model Değerlendirme:**
-    * Tüm modeller **5-Fold Cross Validation** ile test edilmiştir.
-    * Metrikler: Accuracy, F1-Score ve Eğitim Süresi (Training Time).
+### 📄 Detaylı Rapor
+Metodoloji, alan bilgisi (domain knowledge) yorumları ve literatür karşılaştırmasını içeren kapsamlı analiz için lütfen tam raporu okuyunuz:
 
-### Güncel Sonuçlar (Ön İzleme)
-Şu ana kadar yapılan analizlerde:
-* **Baseline Model:** %92.6 doğruluk oranına ulaştı.
-* **Wrapper Method (RFE):** Özniteliklerin %82'si atılmasına rağmen %91.3 doğruluk oranı ile en iyi performansı gösterdi.
-* **Filter Method:** En hızlı yöntem olmasına rağmen doğruluk oranı %88.7 seviyesinde kaldı.
+👉 **[Proje Raporunun Tamamını Oku](PROJECT_REPORT.pdf)**
 
-*Not: Projenin detaylı teknik raporu ve seçilen sensörlerin fiziksel yorumlaması (Domain Knowledge) üzerindeki çalışmalar devam etmektedir.*
+### 🚀 Nasıl Çalıştırılır?
+1. **Repoyu klonlayın:**
+   ```bash
+   git clone [https://github.com/z-ozturk/Human_Activity_Recognition](https://github.com/z-ozturk/Human_Activity_Recognitiont)
 
----
+2. **Gerekli kütüphaneleri yükleyin:**
+  ```bash
+  pip install pandas numpy scikit-learn matplotlib seaborn
 
-### Installation & Usage (Kurulum ve Kullanım)
-
-# Dataset Setup (Veri Seti Kurulumu)
-⚠️ **Note:** Due to license and size constraints, the dataset is not included in this repository.
-⚠️ **Not:** Lisans ve boyut kısıtlamaları nedeniyle veri seti bu repoya dahil edilmemiştir.
-
-1.  Download the dataset from Kaggle: [Human Activity Recognition with Smartphones](https://www.kaggle.com/uciml/human-activity-recognition-with-smartphones)
-2.  Extract `train.csv` and `test.csv` files into the `data/` folder.
-    *(İndirdiğiniz csv dosyalarını `data/` klasörünün içine atın.)*
-
-# Project Structure (Proje Yapısı)
-```text
-repo-name/
-├── data/                 # Place train.csv and test.csv here (Veri dosyaları buraya)
-├── notebooks/            # Jupyter Notebooks are here (Kod dosyaları buraya)
-│   └── Proje_Notebook.ipynb
-├── requirements.txt      # Dependencies (Gerekli kütüphaneler)
-└── README.md
+3. **Analiz kodunu çalıştırın:**
+  ```bash
+  python feature_selection_comparison.py
+   ---
