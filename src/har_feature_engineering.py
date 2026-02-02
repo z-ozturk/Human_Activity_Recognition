@@ -13,6 +13,7 @@ import time
 import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
+import os 
 
 # Sklearn Modules
 from sklearn.preprocessing import LabelEncoder
@@ -37,9 +38,27 @@ print("Necessary libraries loaded and configuration complete.")
 # Source: UCI Machine Learning Repository - Human Activity Recognition Using Smartphones
 
 # Loading Data
-# Note: Adjust path for Colab or local directory.
-train_df = pd.read_csv(r"/content/train.csv")
-test_df = pd.read_csv(r"/content/test.csv")
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.dirname(script_dir)
+
+train_path = os.path.join(base_dir, "data", "train.csv")
+test_path = os.path.join(base_dir, "data", "test.csv")
+
+print(f"System path: {base_dir}")
+print(f"Reading file: {train_path}")
+
+
+try:
+    train_df = pd.read_csv(train_path)
+    test_df = pd.read_csv(test_path)
+    print("Data loaded successfully.")
+except FileNotFoundError:
+    print("\n[ERROR] Files not found! Please ensure the directory structure is as follows:")
+    print("Project_Folder/")
+    print("  ├── data/ (train.csv and test.csv must be here)")
+    print("  └── src/  (this script should be here)")
+    exit()
 
 print(f"Training Set Dimensions: {train_df.shape}")
 print(f"Test Set Dimensions:     {test_df.shape}")
@@ -217,7 +236,7 @@ df_results = pd.DataFrame(results_list)
 print("\n" + "="*50)
 print("FINAL COMPARISON TABLE")
 print("="*50)
-display(df_results)
+print(df_results.to_string())
 
 # Visualization 1: Accuracy and F1 Score
 plt.figure(figsize=(14, 6))
